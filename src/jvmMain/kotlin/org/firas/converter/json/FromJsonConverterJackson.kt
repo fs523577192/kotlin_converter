@@ -10,6 +10,6 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 class FromJsonConverterJackson<T>: FromJsonConverter<T> {
 
     override fun convert(src: String): T {
-        jacksonObjectMapper()..readValue(src, object: TypeReference<T>() {})
+        jacksonObjectMapper().readValue(src, object: TypeReference<T>() {})
     }
 }
