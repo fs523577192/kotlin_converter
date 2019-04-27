@@ -37,13 +37,14 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-                implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8"
+                compileOnly "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8"
             }
         }
         jvmTest {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-test'
                 implementation 'org.jetbrains.kotlin:kotlin-test-junit'
+                implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8"
             }
         }
         jsMain {

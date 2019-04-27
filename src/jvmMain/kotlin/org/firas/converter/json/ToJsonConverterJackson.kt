@@ -1,5 +1,6 @@
 package org.firas.converter.json
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
 /**
@@ -7,7 +8,15 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
  */
 class ToJsonConverterJackson<T>: ToJsonConverter<T> {
 
+    companion object {
+        val threadLocal = object : ThreadLocal<ObjectMapper>() {
+            protected override fun initialValue(): ObjectMapper {
+                return jacksonObjectMapper()
+            }
+        }
+    }
+
     override fun convert(src: T): String {
-        return jacksonObjectMapper().writeValueAsString(src)
+        return threadLocal.get().writeValueAsString(src)
     }
 }
