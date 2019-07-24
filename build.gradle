@@ -1,6 +1,20 @@
-plugins {
-    id 'kotlin-multiplatform' version '1.3.11'
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41"
+    }
 }
+apply plugin: 'org.jetbrains.kotlin.multiplatform'
+apply plugin: 'maven-publish'
+
 repositories {
     mavenLocal()
     maven {
@@ -9,23 +23,18 @@ repositories {
 }
 
 group 'org.firas.converter'
-version '0.1.0'
+version '0.2.0'
 
-apply plugin: 'maven-publish'
 kotlin {
-    targets {
-        fromPreset(presets.jvm, 'jvm')
-        fromPreset(presets.js, 'js')
-        // For ARM, preset should be changed to presets.iosArm32 or presets.iosArm64
-        // For Linux, preset should be changed to e.g. presets.linuxX64
-        // For MacOS, preset should be changed to e.g. presets.macosX64
-        // fromPreset(presets.mingwX64, 'mingw')
+    jvm {
+        withJava()
     }
+    js()
     sourceSets {
         commonMain {
             dependencies {
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
-                api 'org.firas.validation:validation:0.1.0'
+                api 'org.firas.validation:validation:0.2.0'
             }
         }
         commonTest {
@@ -36,6 +45,7 @@ kotlin {
         }
         jvmMain {
             dependencies {
+                api 'org.firas.java_bean_utils:java_bean_utils:1.0.0'
                 implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
                 compileOnly "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8"
             }

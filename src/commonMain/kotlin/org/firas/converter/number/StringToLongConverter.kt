@@ -6,9 +6,11 @@ import org.firas.converter.Converter
  *
  * @author Wu Yuping
  */
-class StringToLongConverter(val radix: Int = 10): Converter<String, Long> {
+class StringToLongConverter(val radix: Int): Converter<String?, Long?> {
 
-    override fun convert(src: String): Long {
-        return src.toLong(this.radix)
+    constructor(): this(10)
+
+    override fun convert(src: String?): Long? {
+        return src?.toLong(this.radix)
     }
 }

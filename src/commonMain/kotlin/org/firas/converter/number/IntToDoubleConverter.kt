@@ -6,9 +6,9 @@ import org.firas.converter.Converter
  *
  * @author Wu Yuping
  */
-class StringToDoubleConverter: Converter<String?, Double?> {
+class IntToDoubleConverter: Converter<Int?, Double?> {
 
-    override fun convert(src: String?): Double? {
+    override fun convert(src: Int?): Double? {
         return src?.toDouble()
     }
 }

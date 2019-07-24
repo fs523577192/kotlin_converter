@@ -6,9 +6,11 @@ import org.firas.converter.Converter
  *
  * @author Wu Yuping
  */
-class StringToIntConverter(val radix: Int = 10): Converter<String, Int> {
+class StringToIntConverter(val radix: Int): Converter<String?, Int?> {
 
-    override fun convert(src: String): Int {
-        return src.toInt(this.radix)
+    constructor(): this(10)
+
+    override fun convert(src: String?): Int? {
+        return src?.toInt(this.radix)
     }
 }

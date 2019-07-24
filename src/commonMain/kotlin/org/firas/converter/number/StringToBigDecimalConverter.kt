@@ -7,9 +7,9 @@ import org.firas.math.BigDecimal
  *
  * @author Wu Yuping
  */
-class StringToBigDecimalConverter: Converter<String, BigDecimal> {
+class StringToBigDecimalConverter: Converter<String?, BigDecimal?> {
 
-    override fun convert(src: String): BigDecimal {
-        return BigDecimal.valueOf(src)
+    override fun convert(src: String?): BigDecimal? {
+        return if (null == src) null else BigDecimal.valueOf(src)
     }
 }
