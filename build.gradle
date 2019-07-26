@@ -23,7 +23,7 @@ repositories {
 }
 
 group 'org.firas.converter'
-version '0.2.0'
+version '0.3.0'
 
 kotlin {
     jvm {
@@ -68,4 +68,5 @@ kotlin {
             }
         }
     }
+    compileKotlinJs.kotlinOptions.moduleKind = 'umd'
 }
